@@ -1,16 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
 import { firebaseApp } from './firebase';
-import reducer from './reducers';
+import rootReducer from './reducers';
+import thunk from 'redux-thunk';
 import App from './components/App';
 import { logUser } from './actions';
+import HomePage from './components/HomePage';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 
-const store = createStore(reducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
+store.subscribe(() => console.log('store', store.getState()));
 
 firebaseApp.auth().onAuthStateChanged(user => {
 	if (user) {
@@ -20,7 +23,8 @@ firebaseApp.auth().onAuthStateChanged(user => {
 		browserHistory.push('/app');
 	} else {
 		// console.log('user has signed out or needs to sign in');
-		browserHistory.replace('/signin');
+		// browserHistory.replace('/signin');
+		browserHistory.replace('/home');
 	}
 })
 
@@ -28,9 +32,10 @@ firebaseApp.auth().onAuthStateChanged(user => {
 ReactDOM.render(
 	<Provider store={store}>
 		<Router path="/" history={browserHistory}>
+			<Route path="/home" component={HomePage} />
 			<Route path="/app" component={App} />
 			<Route path="/signin" component={SignIn} />
-			<Route path="signup" component={SignUp} />
+			<Route path="/signup" component={SignUp} />
 		</Router>
 	</Provider>,
 document.getElementById('root'))

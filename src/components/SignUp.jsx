@@ -27,6 +27,10 @@ class SignUp extends Component {
 	render() {
 		return (
 			<div className="form-inline" style={{margin: '5%'}}>
+				<div>
+					<Link to={'/home'}><h2>LivBit</h2></Link>
+				</div>
+				{' '}
 				<h2>Sign Up</h2>
 				<div className="form-group">
 					<input 

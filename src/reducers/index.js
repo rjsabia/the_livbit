@@ -1,10 +1,11 @@
-import { SIGNED_IN } from '../actions';
+import { combineReducers } from 'redux';
+import { SIGNED_IN, SEARCH_VENUES } from '../actions';
 
 let user = {
 	email: null
 }
 
-export default (state = user, action) => {
+function userSignIn(state = user, action) {
 	switch (action.type) {
 		case SIGNED_IN:
 			const { email } = action;
@@ -16,3 +17,17 @@ export default (state = user, action) => {
 			return state;
 	}
 }
+
+function myVenues(state= [], action) {
+	switch(action.type) {
+		case SEARCH_VENUES:
+			state = [...state, action.venues];
+			return state;
+		default:
+			return state;
+	}
+}
+
+const rootReducer = combineReducers({ userSignIn, myVenues });
+
+export default rootReducer;
