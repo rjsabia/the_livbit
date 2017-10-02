@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchVenues } from '../actions';
+import SearchResultsList from './SearchResultsList';
 
 class HomePage extends Component {
 	constructor() {
@@ -42,6 +43,7 @@ class HomePage extends Component {
 						</button>
 					</div>
 				</div>
+				<SearchResultsList />
 			</div>
 		)
 	}
