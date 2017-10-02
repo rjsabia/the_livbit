@@ -21,9 +21,13 @@ class HomePage extends Component {
 	render() {
 		return (
 			<div>
-				<h2>Home Page</h2>
-				<div>
-					<div><Link to={'/signin'}>Sign In</Link></div>
+				<div className="hero-container">
+					<div className="hero-div">
+						<h2>Home Page</h2>
+						<div>
+							<div><Link to={'/signin'}>Sign In</Link></div>
+						</div>
+					</div>
 				</div>
 				<div className="form-inline">
 					<h3>Search for Bitcoin Vendors and Services</h3>

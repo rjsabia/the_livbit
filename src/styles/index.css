@@ -1,6 +1,13 @@
 body {
 	text-align: center;
-	padding: 5%;
+}
+
+.hero-div {
+	background-image: url('../assets/bitcoin_header_1.jpg');
+	width: 100% !important;
+	height: 50vw !important;
+	background-size: cover;
+	background-repeat: none;
 }
 
 .App {
