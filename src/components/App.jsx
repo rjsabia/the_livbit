@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { firebaseApp } from '../firebase'
+import { firebaseApp } from '../firebase';
+import '../styles/index.css';
 
 class App extends Component {
 	
@@ -11,7 +12,7 @@ class App extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="App">
 				<h2>Welcome to LivBit</h2>
 				<div>
 					<button

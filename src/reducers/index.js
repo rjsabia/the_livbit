@@ -21,9 +21,7 @@ function userSignIn(state = user, action) {
 function myVenues(state= [], action) {
 	switch(action.type) {
 		case SEARCH_VENUES:
-			// return action.venues;
-			state = [...state, action.venues];
-			return state;
+			return action.venues;
 		default:
 			return state;
 	}

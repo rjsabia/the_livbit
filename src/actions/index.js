@@ -10,7 +10,8 @@ export function logUser(email) {
 }
 
 function recieveVenues(json) {
-	const venues = json.venues;
+	console.log('recieveVenues json', json);
+	const { venues } = json;
 
 	return {
 		type: SEARCH_VENUES,

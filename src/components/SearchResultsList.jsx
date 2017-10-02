@@ -5,14 +5,19 @@ import { connect } from 'react-redux';
 class SearchResultsList extends Component {
 	render(){
 		console.log('this.props', this.props);
+		// console.log('this.props.myVenues.venues', this.props.myVenues.venues);
 		return (
 			<div>
 				<h3>Search Results</h3>
 				<div>
 					{
 						this.props.myVenues.map((venue, index) => {
-							console.log('venue.name', venue[1].name);
-							return <div key={index}><strong>{venue.name}</strong></div>
+							console.log('venue.name', venue.name);
+							return (
+								<div key={index}>
+									<strong>{venue.name}</strong>
+								</div>
+								)
 						})
 					}
 				</div>
