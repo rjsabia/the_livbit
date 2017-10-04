@@ -3,6 +3,8 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchVenues } from '../actions';
 import SearchResultsList from './SearchResultsList';
+// import DemoGps from './Demo_Gps';
+import GoogleApiWrapper from './MapContainer';
 
 class HomePage extends Component {
 	constructor() {
@@ -21,13 +23,24 @@ class HomePage extends Component {
 	render() {
 		return (
 			<div>
-				<div className="hero-container">
-					<div className="hero-div">
-						<h2>Home Page</h2>
-						<div>
-							<div><Link to={'/signin'}>Sign In</Link></div>
+				<header className="hero-container">
+					<div className="logo-nav-container">
+						<div className="logo-div">
+							<h2>LivBit</h2>
 						</div>
+						<nav>
+							<div className="nav-div">
+								<ul>
+									<li><Link className="nav-link" to={'/signin'}>Sign In</Link></li>
+								</ul>
+							</div>
+						</nav>
 					</div>
+				</header>
+				<div className="hero-div">
+						<div>
+							<img alt="people at restaraunt" />
+						</div>
 				</div>
 				<div className="form-inline">
 					<h3>Search for Bitcoin Vendors and Services</h3>
@@ -48,6 +61,7 @@ class HomePage extends Component {
 					</div>
 				</div>
 				<SearchResultsList />
+				<GoogleApiWrapper />
 			</div>
 		)
 	}

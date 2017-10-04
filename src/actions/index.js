@@ -1,5 +1,6 @@
 export const SIGNED_IN = 'SIGNED_IN';
 export const SEARCH_VENUES = 'SEARCH_VENUES';
+export const GET_LOCATION = 'GET_LOCATION';
 
 export function logUser(email) {
 	const action = {
@@ -30,4 +31,12 @@ export function fetchVenues(venue) {
 		return fetchVenuesJson(venue)
 		.then(json => dispatch(recieveVenues(json)))
 	}
+}
+
+export function getLocation(coords) {
+	const action = {
+		type: GET_LOCATION,
+		coords
+	}
+	return action
 }

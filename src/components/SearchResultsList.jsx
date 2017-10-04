@@ -16,6 +16,8 @@ class SearchResultsList extends Component {
 							return (
 								<div key={index}>
 									<strong>{venue.name}</strong>
+									<em> lat: {venue.lat}</em>
+									<em> lon: {venue.lon}</em>
 								</div>
 								)
 						})

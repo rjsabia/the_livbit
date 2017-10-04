@@ -1,9 +1,36 @@
 body {
-	text-align: center;
+	
+}
+
+.logo-nav-container {
+	height: 3vw;
+	width: 100%;
+	background-color: white;
+}
+
+.logo-div h2 {
+	margin: 0;
+}
+
+.logo-div {
+	float: left;
+	padding-left: 10px;
+}
+
+.nav-link {
+	text-decoration: none;
+	font-size: 20px;
+	padding-right: 10px;
+	margin-top: 30px;
+}
+
+.nav-div li {
+	float: right;
+	display: inline;
 }
 
 .hero-div {
-	background-image: url('../assets/bitcoin_header_1.jpg');
+	background-image: url('../assets/bitcoin-header-2.jpg');
 	width: 100% !important;
 	height: 50vw !important;
 	background-size: cover;
