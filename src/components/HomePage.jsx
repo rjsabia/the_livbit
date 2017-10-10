@@ -3,8 +3,6 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchVenues } from '../actions';
 import SearchResultsList from './SearchResultsList';
-// import DemoGps from './Demo_Gps';
-import GoogleApiWrapper from './MapContainer';
 
 class HomePage extends Component {
 	constructor() {
@@ -42,26 +40,29 @@ class HomePage extends Component {
 							<img alt="people at restaraunt" />
 						</div>
 				</div>
-				<div className="form-inline">
-					<h3>Search for Bitcoin Vendors and Services</h3>
-					<div className="form-group">
-						<input 
-							className="form-control"
-							type="text"
-							placeholder="food, atm, general..."
-							onChange={event => this.setState({ query: event.target.value })}
-						/>
-						<button
-							className="btn btn-primary"
-							type="button"
-							onClick={() => this.search()}
-						>
-							Search
-						</button>
+				<section>
+					<div className="main-content-container">
+						<div className="form-inline">
+							<h3>Search for Bitcoin Vendors and Services</h3>
+							<div className="form-group">
+								<input 
+									className="form-control"
+									type="text"
+									placeholder="food, atm, general..."
+									onChange={event => this.setState({ query: event.target.value })}
+								/>
+								<button
+									className="btn btn-primary"
+									type="button"
+									onClick={() => this.search()}
+								>
+									Search
+								</button>
+							</div>
+						</div>
+						<SearchResultsList />
 					</div>
-				</div>
-				<SearchResultsList />
-				<GoogleApiWrapper />
+				</section>
 			</div>
 		)
 	}

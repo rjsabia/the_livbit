@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 class SearchResultsList extends Component {
 	render(){
 		console.log('this.props', this.props);
-		// console.log('this.props.myVenues.venues', this.props.myVenues.venues);
 		return (
 			<div>
 				<h3>Search Results</h3>
@@ -16,8 +15,6 @@ class SearchResultsList extends Component {
 							return (
 								<div key={index}>
 									<strong>{venue.name}</strong>
-									<em> lat: {venue.lat}</em>
-									<em> lon: {venue.lon}</em>
 								</div>
 								)
 						})
