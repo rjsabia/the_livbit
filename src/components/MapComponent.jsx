@@ -1,6 +1,8 @@
 import React from "react";
 import { compose, withProps } from "recompose";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import MarkerClusterer from "react-google-maps/lib/components/addons/MarkerClusterer";
+import { connect } from 'react-redux';
 import { API_Maps_KEY } from './secrets';
 import MapStyleDark from './MapStyleDark.json';
 
@@ -15,17 +17,29 @@ const MyMapComponent = compose(
   withGoogleMap
 )((props) =>
   <GoogleMap
-    defaultZoom={14}
-    // defaultCenter={{ lat: 37.774929, lng: -122.419416 }}
+    defaultZoom={7}
     center={{ lat: props.currentLocation.lat, lng: props.currentLocation.lng }}
     defaultOptions={{ styles: MapStyleDark }}
   >
-    {props.isMarkerShown && <Marker position={{ lat: 37.774929, lng: -122.419416 }} onClick={props.onMarkerClick} />}
+    {props.isMarkerShown && <Marker position={{ lat: props.currentLocation.lat, lng: props.currentLocation.lng }} onClick={props.onMarkerClick} />}
+    <MarkerClusterer
+      averageCenter
+      enableRetinaIcons
+      gridSize={60}
+    >
+      {props.myVenues.map((marker, index) => (
+        <Marker
+          key={index}
+          position={{ lat: marker.lat, lng: marker.lon }}
+        />
+      ))}
+    </MarkerClusterer>
   </GoogleMap>
 );
 
 class MapComponent extends React.PureComponent {
   state = {
+    // markers: this.props.myVenues,
     isMarkerShown: false,
     currentLocation: {
       lat: 37.774929,
@@ -34,15 +48,11 @@ class MapComponent extends React.PureComponent {
   }
 
   componentDidMount() {
-    // this.geoFindMe()
-    // this.delayedShowMarker()
-   console.log('this.state', this.state);
 
     if (navigator && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((pos) => {
             console.log('pos.coords', pos.coords);
             console.log('pos.coords.latitude', pos.coords.latitude);
-            // const coords = pos.coords;
             this.setState({
                 currentLocation: {
                     lat: pos.coords.latitude,
@@ -52,7 +62,7 @@ class MapComponent extends React.PureComponent {
             console.log('current lat and lng', this.state.currentLocation);
         })
     }
-    // this.delayedShowMarker()
+    this.delayedShowMarker()
 
   }
 
@@ -69,14 +79,20 @@ class MapComponent extends React.PureComponent {
 
   render() {
     console.log('this.state.currentLocation in render', this.state.currentLocation);
+    console.log('this.props.myVenues in render map', this.props.myVenues);
     return (
       <MyMapComponent
         isMarkerShown={this.state.isMarkerShown}
         onMarkerClick={this.handleMarkerClick}
         currentLocation={this.state.currentLocation}
+        myVenues={this.props.myVenues}
       />
     )
   }
 }
 
-export default MapComponent;
+function mapStateToProps(state) {
+  return state;
+}
+
+export default connect(mapStateToProps, null)(MapComponent);

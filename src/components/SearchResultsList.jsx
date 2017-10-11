@@ -11,10 +11,12 @@ class SearchResultsList extends Component {
 				<div>
 					{
 						this.props.myVenues.map((venue, index) => {
-							console.log('venue.name', venue.name);
+							// console.log('venue.name', venue.name);
 							return (
 								<div key={index}>
 									<strong>{venue.name}</strong>
+									<em>Lat: {venue.lat}</em>
+									<em>Lng: {venue.lon}</em>
 								</div>
 								)
 						})

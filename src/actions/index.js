@@ -11,7 +11,7 @@ export function logUser(email) {
 }
 
 function recieveVenues(json) {
-	console.log('recieveVenues json', json);
+	// console.log('recieveVenues json', json);
 	const { venues } = json;
 
 	return {
@@ -21,7 +21,7 @@ function recieveVenues(json) {
 }
 
 function fetchVenuesJson(query) {
-	console.log('query', query);
+	// console.log('query', query);
 	return fetch(`https://coinmap.org/api/v1/venues?query=${query}`)
 	.then(response => response.json())
 }

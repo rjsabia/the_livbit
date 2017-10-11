@@ -15,7 +15,7 @@ class HomePage extends Component {
 	}
 
 	search() {
-		console.log('this.state', this.state);
+		// console.log('this.state', this.state);
 		this.props.fetchVenues(this.state.query);
 	}
 
