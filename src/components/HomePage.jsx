@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { fetchVenues } from '../actions';
 import SearchResultsList from './SearchResultsList';
 import MapComponent from './MapComponent';
+import GlobeSpin from '../assets/globe-spin-detailed-sun.mp4';
+import LogoVid from '../assets/future-circle.mp4';
 
 class HomePage extends Component {
 	constructor() {
@@ -25,22 +27,27 @@ class HomePage extends Component {
 				<header className="hero-container">
 					<div className="logo-nav-container">
 						<div className="logo-div">
-							<h2>LivBit</h2>
+							<div className="logo-vid-container">
+								<video className="logo-vid" autoplay="" loop="infinite" src={LogoVid}></video>
+							</div>
+							<div className="the-logo">
+								<h2>L ivBit</h2>
+							</div>
 						</div>
 						<nav>
 							<div className="nav-div">
 								<ul>
-									<li><Link className="nav-link" to={'/signin'}>Sign In</Link></li>
+									<li><Link className="nav-link" to={'/signin'}>menu</Link></li>
 								</ul>
 							</div>
 						</nav>
 					</div>
 				</header>
-				<div className="hero-div">
-						<div>
-							<img alt="people at restaraunt" />
-						</div>
+				
+				<div className="vid-container">
+					<video className="globe-vid" autoplay="" loop="infinite" src={GlobeSpin}></video>
 				</div>
+				
 				<section>
 					<div className="main-content-container">
 						<div className="form-inline">

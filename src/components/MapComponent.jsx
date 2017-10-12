@@ -21,7 +21,8 @@ const MyMapComponent = compose(
     center={{ lat: props.currentLocation.lat, lng: props.currentLocation.lng }}
     defaultOptions={{ styles: MapStyleDark }}
   >
-    {props.isMarkerShown && <Marker position={{ lat: props.currentLocation.lat, lng: props.currentLocation.lng }} onClick={props.onMarkerClick} />}
+    {props.isMarkerShown && <Marker position={{ lat: props.currentLocation.lat, lng: props.currentLocation.lng }} 
+    onClick={props.onMarkerClick} />}
     <MarkerClusterer
       averageCenter
       enableRetinaIcons
@@ -31,6 +32,7 @@ const MyMapComponent = compose(
         <Marker
           key={index}
           position={{ lat: marker.lat, lng: marker.lon }}
+          onMouseOver={props.mouseOnMarker(marker)}
         />
       ))}
     </MarkerClusterer>
@@ -43,7 +45,8 @@ class MapComponent extends React.PureComponent {
     isMarkerShown: false,
     currentLocation: {
       lat: 37.774929,
-      lng: -122.419416
+      lng: -122.419416,
+      markerClick: 'Users current location'
     }
   }
 
@@ -77,6 +80,10 @@ class MapComponent extends React.PureComponent {
     this.delayedShowMarker()
   }
 
+  mouseOnMarker = (mark) => {
+    return <div><h2>{mark.name}</h2></div>
+  }
+
   render() {
     console.log('this.state.currentLocation in render', this.state.currentLocation);
     console.log('this.props.myVenues in render map', this.props.myVenues);
@@ -86,6 +93,7 @@ class MapComponent extends React.PureComponent {
         onMarkerClick={this.handleMarkerClick}
         currentLocation={this.state.currentLocation}
         myVenues={this.props.myVenues}
+        mouseOnMarker={this.mouseOnMarker}
       />
     )
   }

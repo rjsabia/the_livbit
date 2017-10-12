@@ -5,15 +5,26 @@ body {
 }
 
 .logo-nav-container {
-	height: 3vw;
 	width: 100%;
+	display: inline;
+	background-color: #000000;
+}
+
+.the-logo {
+	z-index: 200;
+	position: absolute;
+	left: 47px;
+	top: 25px;
 }
 
 .logo-div h2 {
 	margin: 0;
+	margin-left: -12px;
+	display: inline;
+	font-size: 34px;
 }
 
-.logo-div {
+.logo-div > div {
 	float: left;
 	padding-left: 10px;
 }
@@ -22,20 +33,77 @@ body {
 	text-decoration: none;
 	font-size: 20px;
 	padding-right: 10px;
-	margin-top: 30px;
+}
+
+li a{
+	color: white;
+	font-family: 'Raleway', sans-serif;
 }
 
 .nav-div li {
-	float: right;
-	display: inline;
+	/*float: right;*/
+	/*display: inline;*/
+	/*font-size: 5px;
+	padding-top: 4.25vw;
+	padding-left: 8.75vh;*/
+	height: 100px;
+	width: 150px;
+	position: absolute;
+	right: 10%;
+	top: -4%;
+	list-style-type: none;
+	background-color: #ff3232;
+	-webkit-clip-path: polygon(51% 69%, 100% 50%, 50% 100%, 0% 50%);
+	clip-path: polygon(51% 69%, 100% 50%, 50% 100%, 0% 50%);
+	animation-name: blinker;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-ease-out;
+    animation-iteration-count: infinite;
+
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 4s;
+    -webkit-animation-timing-function: ease-in-ease-out;
+    -webkit-animation-iteration-count: infinite;
 }
 
-.hero-div {
-	background-image: url('../assets/bitcoin-header-2.jpg');
+@-moz-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.2; }
+    100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.2; }
+    100% { opacity: 1.0; }
+}
+
+@keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.2; }
+    100% { opacity: 1.0; }
+}
+
+.logo-vid-container {
+	height: 80px;
+	width: 145px;
+	overflow: hidden;
+}
+
+.logo-vid {
 	width: 100% !important;
-	height: 50vw !important;
-	background-size: cover;
-	background-repeat: none;
+	height: auto !important;
+	opacity: 0.8;
+}
+
+.vid-container {
+	width: 100%;
+}
+
+.globe-vid {
+	width: 100% !important;
+	height: auto !important;
+	opacity: 0.6;
 }
 
 .main-content-container {
