@@ -12,7 +12,8 @@ class HomePage extends Component {
 		super();
 
 		this.state = {
-			query: ''
+			query: '',
+			childVisible: false
 		}
 	}
 
@@ -20,6 +21,10 @@ class HomePage extends Component {
 		// console.log('this.state', this.state);
 		this.props.fetchVenues(this.state.query);
 	}
+
+	onClick() {
+    	this.setState({childVisible: !this.state.childVisible});
+  	}
 
 	render() {
 		return (
@@ -35,11 +40,18 @@ class HomePage extends Component {
 							</div>
 						</div>
 						<nav>
-							<div className="nav-div">
-								<ul>
-									<li><Link className="nav-link" to={'/signin'}>menu</Link></li>
-								</ul>
-							</div>
+							<div className="nav-div"
+								onClick={() => this.onClick()}
+							></div>
+							{
+							this.state.childVisible
+								? 	<div className="hidden-nav">
+										<ul>
+											<li><Link className="nav-link" to={'/signin'}>account</Link></li>
+										</ul>
+									</div>
+								: null
+							}
 						</nav>
 					</div>
 				</header>

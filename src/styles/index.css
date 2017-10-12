@@ -14,7 +14,7 @@ body {
 	z-index: 200;
 	position: absolute;
 	left: 47px;
-	top: 25px;
+	top: 18px;
 }
 
 .logo-div h2 {
@@ -40,7 +40,11 @@ li a{
 	font-family: 'Raleway', sans-serif;
 }
 
-.nav-div li {
+ul {
+	list-style-type: none;
+}
+
+.nav-div {
 	/*float: right;*/
 	/*display: inline;*/
 	/*font-size: 5px;
@@ -50,7 +54,7 @@ li a{
 	width: 150px;
 	position: absolute;
 	right: 10%;
-	top: -4%;
+	top: -5%;
 	list-style-type: none;
 	background-color: #ff3232;
 	-webkit-clip-path: polygon(51% 69%, 100% 50%, 50% 100%, 0% 50%);
@@ -84,6 +88,21 @@ li a{
     100% { opacity: 1.0; }
 }
 
+.hidden-nav {
+	position: absolute;
+	right: 10%;
+	top: 12%;
+	height: 3vw;
+	width: 22vh;
+	background-color: #ff3232;
+	padding-top: 7px;
+	z-index: 10000;
+}
+
+/*.nav-div:hover + .hidden-nav {
+	display: block;
+}*/
+
 .logo-vid-container {
 	height: 80px;
 	width: 145px;
@@ -103,7 +122,7 @@ li a{
 .globe-vid {
 	width: 100% !important;
 	height: auto !important;
-	opacity: 0.6;
+	opacity: 0.5;
 }
 
 .main-content-container {
