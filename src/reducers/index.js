@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { SIGNED_IN, SEARCH_VENUES, GET_LOCATION } from '../actions';
+import { SIGNED_IN, SEARCH_VENUES, GET_LOCATION, FAVORITE_LOCATIONS } from '../actions';
 
 let user = {
 	email: null
@@ -36,6 +36,16 @@ function myLocation(state = [], action) {
 	}
 }
 
-const rootReducer = combineReducers({ userSignIn, myVenues, myLocation });
+function favoriteLocations(state = [], action) {
+	switch(action.type) {
+		case FAVORITE_LOCATIONS:
+			state = [...state, action.location]
+			return state;
+		default:
+			return state;
+	}
+}
+
+const rootReducer = combineReducers({ userSignIn, myVenues, myLocation, favoriteLocations });
 
 export default rootReducer;

@@ -33,7 +33,7 @@ class HomePage extends Component {
 					<div className="logo-nav-container">
 						<div className="logo-div">
 							<div className="logo-vid-container">
-								<video className="logo-vid" autoplay="" loop="infinite" src={LogoVid}></video>
+								<video className="logo-vid" autoplay="true" loop="infinite" src={LogoVid}></video>
 							</div>
 							<div className="the-logo">
 								<h2>L ivBit</h2>
@@ -47,7 +47,13 @@ class HomePage extends Component {
 							this.state.childVisible
 								? 	<div className="hidden-nav">
 										<ul>
-											<li><Link className="nav-link" to={'/signin'}>account</Link></li>
+											<li><Link className="nav-link" to={'/signin'}>Account</Link></li>
+											{
+												this.props.favoriteLocations.length > 0 ?
+													<li><Link className="nav-link" to='/app'>Favorites</Link></li>
+												:
+													<div></div>
+											}
 										</ul>
 									</div>
 								: null
@@ -57,7 +63,10 @@ class HomePage extends Component {
 				</header>
 				
 				<div className="vid-container">
-					<video className="globe-vid" autoplay="" loop="infinite" src={GlobeSpin}></video>
+					<video className="globe-vid" autoplay="true" loop="infinite" src={GlobeSpin}></video>
+					<div className="story-div">
+						<h2><span>Search</span> for any merchant that accepts <span>Bitcoin</span> crypto-currency on planet <span>Earth</span></h2>
+					</div>
 				</div>
 				
 				<section>
@@ -80,7 +89,9 @@ class HomePage extends Component {
 								</button>
 							</div>
 						</div>
-						<SearchResultsList />
+						<SearchResultsList 
+							favoriteButton={true}
+						/>
 						<MapComponent />
 					</div>
 				</section>
@@ -89,4 +100,8 @@ class HomePage extends Component {
 	}
 }
 
-export default connect(null, { fetchVenues })(HomePage);
+function mapStateToProps(state) {
+	return state;
+}
+
+export default connect(mapStateToProps, { fetchVenues })(HomePage);

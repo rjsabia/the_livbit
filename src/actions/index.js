@@ -1,6 +1,7 @@
 export const SIGNED_IN = 'SIGNED_IN';
 export const SEARCH_VENUES = 'SEARCH_VENUES';
 export const GET_LOCATION = 'GET_LOCATION';
+export const FAVORITE_LOCATIONS = 'FAVORITE_LOCATIONS';
 
 export function logUser(email) {
 	const action = {
@@ -39,4 +40,11 @@ export function getLocation(coords) {
 		coords
 	}
 	return action
+}
+
+export function favoriteLocations(location) {
+	return {
+		type: FAVORITE_LOCATIONS,
+		location
+	}
 }
