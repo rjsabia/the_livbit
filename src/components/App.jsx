@@ -1,46 +1,83 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { firebaseApp } from '../firebase';
+import { favoritesRef } from '../firebase';
 import { connect } from 'react-redux';
+import { setFavorites } from '../actions';
+import FavoriteItem from './FavoriteItem';
 import '../styles/index.css';
+import LogoVid from '../assets/future-circle.mp4';
 
 class App extends Component {
 	
+	componentDidMount() {
+		favoritesRef.on('value', snap => {
+			let favorites = [];
+			snap.forEach(favorite => {
+				const { name, lat, lon } = favorite.val();
+				const serverKey = favorite.key;
+				favorites.push({ name, lat, lon });
+			})
+			this.props.setFavorites(favorites);
+		})
+	}
 
 	signOut(){
 		firebaseApp.auth().signOut();
 	}
 
-
 	render() {
 		return (
 			<div className="App">
-				<div>
-					<Link to={'/home'}><h2>LivBit</h2></Link>
-				</div>
-				<h2>Welcome to your LivBit favorites</h2>
-				<div>
-					<h4>Favorites</h4>
-					{
-					this.props.favoriteLocations.map((location, index) => {
-						return (
-							<div 
-								key={index}
-								className="favorite-wrapper"
-								>
-								<div className="each-favorite">{location.name}</div>
+			
+				<header className="hero-container">
+					<div className="logo-nav-container">
+						<div className="logo-div">
+							<div className="logo-vid-container">
+								<video className="logo-vid" autoPlay="true" loop="infinite" src={LogoVid}></video>
 							</div>
-						)
-					})
-				}
-				</div>
-				<div>
-					<button
-						className="btn btn-danger"
-						onClick={() => this.signOut()}
-						>
-						Sign Out
-					</button>
+							<div className="the-logo">
+								<h2>L ivBit</h2>
+							</div>
+						</div>
+						<nav>
+							<div className="nav-div"
+								onClick={() => this.onClick()}
+							></div>
+							
+						 	<div className="hidden-nav">
+								<ul>
+									<li><Link className="nav-link" onClick={() => this.signOut()}>SignOut</Link></li>
+									<li><Link className="nav-link" to='/home'>Home</Link></li>
+								</ul>
+							</div>
+						</nav>
+					</div>
+				</header>
+
+				<div className="favorites-main-content">
+					<h2><u>Welcome to LivBit favorites</u></h2>
+					<div>
+						<h4>Favorites</h4>
+						<div>
+							{
+								this.props.favorites
+								?
+									this.props.favorites.map((favorite, index) => {
+										const { name, lat, lon } = favorite;
+										return(
+											<div key={index}>
+												<strong>{name}</strong> Lat: <em>{lat}</em> Lon: <em>{lon}</em>
+											</div>
+										)
+									})
+								:
+									<div>
+										<h4>Sorry, you have no saved goals</h4>
+									</div>
+							}
+						</div>
+					</div>
 				</div>
 			</div>
 		)
@@ -48,7 +85,15 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-	return state;
+	const { setFavorites } = state;
+	console.log('state.favorites', state.setFavorites);
+	return {
+		favorites: setFavorites
+	}
 }
+// function mapStateToProps(state) {
+// 	return state;
+// }
 
-export default connect(mapStateToProps, null)(App);
+// export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps, { setFavorites })(App);

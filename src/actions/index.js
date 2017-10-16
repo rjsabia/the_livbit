@@ -2,6 +2,7 @@ export const SIGNED_IN = 'SIGNED_IN';
 export const SEARCH_VENUES = 'SEARCH_VENUES';
 export const GET_LOCATION = 'GET_LOCATION';
 export const FAVORITE_LOCATIONS = 'FAVORITE_LOCATIONS';
+export const SET_FAVORITES = 'SET_FAVORITES';
 
 export function logUser(email) {
 	const action = {
@@ -47,4 +48,12 @@ export function favoriteLocations(location) {
 		type: FAVORITE_LOCATIONS,
 		location
 	}
+}
+
+export function setFavorites(favorites) {
+	const action = {
+		type: SET_FAVORITES,
+		favorites
+	}
+	return action;
 }

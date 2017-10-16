@@ -1,6 +1,6 @@
 import React from "react";
 import { compose, withProps } from "recompose";
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps";
 import MarkerClusterer from "react-google-maps/lib/components/addons/MarkerClusterer";
 import { connect } from 'react-redux';
 import { API_Maps_KEY } from './secrets';
@@ -10,7 +10,7 @@ const MyMapComponent = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${API_Maps_KEY}&v=3.exp&libraries=geometry,drawing,places`,
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `400px` }} />,
+    containerElement: <div style={{ height: `400px`, width: `50%`, float: `right` }} />,
     mapElement: <div style={{ height: `100%` }} />,
   }),
   withScriptjs,
@@ -32,8 +32,13 @@ const MyMapComponent = compose(
         <Marker
           key={index}
           position={{ lat: marker.lat, lng: marker.lon }}
-          onMouseOver={props.mouseOnMarker(marker)}
-        />
+          // onMouseOver={props.mouseOnMarker(marker)}
+          onMouseOver={() => console.log('marker clicked')}
+        > 
+            <InfoWindow>
+              <h1>Hello</h1>
+            </InfoWindow>
+        </Marker>
       ))}
     </MarkerClusterer>
   </GoogleMap>
@@ -66,7 +71,6 @@ class MapComponent extends React.PureComponent {
         })
     }
     this.delayedShowMarker()
-
   }
 
   delayedShowMarker = () => {
@@ -104,3 +108,7 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, null)(MapComponent);
+
+//{props.isOpen && <InfoWindow onCloseClick={props.onToggleOpen}>
+        //<FaAnchor />
+     // </InfoWindow>}

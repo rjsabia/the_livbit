@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { SIGNED_IN, SEARCH_VENUES, GET_LOCATION, FAVORITE_LOCATIONS } from '../actions';
+import { SIGNED_IN, SEARCH_VENUES, GET_LOCATION, FAVORITE_LOCATIONS, SET_FAVORITES } from '../actions';
 
 let user = {
 	email: null
@@ -46,6 +46,18 @@ function favoriteLocations(state = [], action) {
 	}
 }
 
-const rootReducer = combineReducers({ userSignIn, myVenues, myLocation, favoriteLocations });
+// const initialState = [{ name: 'A favorite place', lat: '0', lon: '0' }]
+
+function setFavorites (state = [], action) {
+	switch(action.type) {
+		case SET_FAVORITES:
+			const { favorites } = action;
+			return favorites;
+		default:
+			return state;
+	}
+}
+
+const rootReducer = combineReducers({ userSignIn, myVenues, myLocation, favoriteLocations, setFavorites });
 
 export default rootReducer;

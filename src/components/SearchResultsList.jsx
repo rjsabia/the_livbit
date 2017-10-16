@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { favoritesRef } from '../firebase';
-import { favoriteLocations } from '../actions';
+import { favoriteLocations, setFavorites } from '../actions';
 // import ResultItems from './ResultItems';
 
 class SearchResultsList extends Component {
 	constructor() {
 		super();
 		this.state = {
-			favorited: false
+			favorited: false,
+			resultLimit: 10
 		}
 	}
 
 	favorite(name, lat, lon) {
 		let location = { name: name, lat: lat, lon: lon }
 		this.props.favoriteLocations(location);
+		this.props.setFavorites(location);
 		this.setState({ favorited: true });
 		this.addFavorite(location);
 	}
@@ -34,11 +36,11 @@ class SearchResultsList extends Component {
 	render(){
 		console.log('this.props', this.props);
 		return (
-			<div>
+			<div className="result-body">
 				<h3>Search Results</h3>
 				<div className="result-container">
 					{
-						this.props.myVenues.map((venue, index) => {
+						this.props.myVenues.slice(0, this.state.resultLimit).map((venue, index) => {
 							// console.log('venue.name', venue.name);
 							return (
 									<div 
@@ -52,7 +54,7 @@ class SearchResultsList extends Component {
 												:
 													<div 
 														className="star"
-														onClick={() => this.favorite(venue.name, venue.lat, venue.lon )}
+														onClick={() => this.favorite(venue.name, venue.lat, venue.lon)}
 													>
 														&#9734;
 													</div>
@@ -66,7 +68,19 @@ class SearchResultsList extends Component {
 								)
 						})
 					}
-				</div>
+				</div>	
+				{
+				this.props.myVenues.length === 0 ?
+					<div>No Search Results</div>
+				:
+					<div className="load-more-results"
+						onClick={() => {
+							this.setState({ resultLimit: this.state.resultLimit+10})
+						}}
+					>
+						Load 10 more results >>>	
+					</div>
+				}
 			</div>
 		)
 	}
@@ -76,4 +90,4 @@ function mapStateToProps(state) {
 	return state;
 }
 
-export default connect(mapStateToProps, { favoriteLocations })(SearchResultsList);
+export default connect(mapStateToProps, { favoriteLocations, setFavorites })(SearchResultsList);

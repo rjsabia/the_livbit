@@ -29,11 +29,12 @@ class HomePage extends Component {
 	render() {
 		return (
 			<div>
+				
 				<header className="hero-container">
 					<div className="logo-nav-container">
 						<div className="logo-div">
 							<div className="logo-vid-container">
-								<video className="logo-vid" autoplay="true" loop="infinite" src={LogoVid}></video>
+								<video className="logo-vid" autoPlay="true" loop="infinite" src={LogoVid}></video>
 							</div>
 							<div className="the-logo">
 								<h2>L ivBit</h2>
@@ -63,7 +64,7 @@ class HomePage extends Component {
 				</header>
 				
 				<div className="vid-container">
-					<video className="globe-vid" autoplay="true" loop="infinite" src={GlobeSpin}></video>
+					<video className="globe-vid" autoPlay="true" loop="infinite" src={GlobeSpin}></video>
 					<div className="story-div">
 						<h2><span>Search</span> for any merchant that accepts <span>Bitcoin</span> crypto-currency on planet <span>Earth</span></h2>
 					</div>
@@ -71,17 +72,17 @@ class HomePage extends Component {
 				
 				<section>
 					<div className="main-content-container">
-						<div className="form-inline">
+						<div className="form-inline form-wrapper">
 							<h3>Search for Bitcoin Vendors and Services</h3>
 							<div className="form-group">
 								<input 
-									className="form-control"
+									className="form-control form-data"
 									type="text"
 									placeholder="food, atm, general..."
 									onChange={event => this.setState({ query: event.target.value })}
 								/>
 								<button
-									className="btn btn-primary"
+									className="btn btn-primary form-search-button"
 									type="button"
 									onClick={() => this.search()}
 								>
@@ -89,12 +90,15 @@ class HomePage extends Component {
 								</button>
 							</div>
 						</div>
-						<SearchResultsList 
-							favoriteButton={true}
-						/>
-						<MapComponent />
+						<div className="result-map-wrapper">
+							<SearchResultsList 
+								favoriteButton={true}
+							/>
+							<MapComponent />
+						</div>
 					</div>
 				</section>
+
 			</div>
 		)
 	}

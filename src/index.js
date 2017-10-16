@@ -12,7 +12,7 @@ import HomePage from './components/HomePage';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk));
 store.subscribe(() => console.log('store', store.getState()));
 
 firebaseApp.auth().onAuthStateChanged(user => {
