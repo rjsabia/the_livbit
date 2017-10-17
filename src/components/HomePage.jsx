@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { firebaseApp } from '../firebase';
+import { favoritesRef } from '../firebase';
 import { connect } from 'react-redux';
-import { fetchVenues } from '../actions';
+import { fetchVenues, logOut } from '../actions';
 import SearchResultsList from './SearchResultsList';
 import MapComponent from './MapComponent';
 import GlobeSpin from '../assets/globe-spin-detailed-sun.mp4';
@@ -26,7 +28,13 @@ class HomePage extends Component {
     	this.setState({childVisible: !this.state.childVisible});
   	}
 
+  	signOut(){
+		firebaseApp.auth().signOut();
+		this.props.logOut();
+	}
+
 	render() {
+		console.log('this.props.userSignIn', this.props.userSignIn.email);
 		return (
 			<div>
 				
@@ -48,8 +56,14 @@ class HomePage extends Component {
 							this.state.childVisible
 								? 	<div className="hidden-nav">
 										<ul>
-											<li><Link className="nav-link" to={'/signin'}>Account</Link></li>
+										{
+											this.props.userSignIn.email === null ?
+												<li><Link className="nav-link" to={'/signin'}>Account</Link></li>
+											:
+												<li><Link className="nav-link" onClick={() => this.signOut()}>SignOut</Link></li>
+										}
 											{
+												//this.props.userSignIn.email ?
 												this.props.favoriteLocations.length > 0 ?
 													<li><Link className="nav-link" to='/app'>Favorites</Link></li>
 												:
@@ -105,7 +119,8 @@ class HomePage extends Component {
 }
 
 function mapStateToProps(state) {
+	console.log('this.state in Homepage', state.userSignIn.email);
 	return state;
 }
 
-export default connect(mapStateToProps, { fetchVenues })(HomePage);
+export default connect(mapStateToProps, { fetchVenues, logOut })(HomePage);

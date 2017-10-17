@@ -3,11 +3,46 @@ export const SEARCH_VENUES = 'SEARCH_VENUES';
 export const GET_LOCATION = 'GET_LOCATION';
 export const FAVORITE_LOCATIONS = 'FAVORITE_LOCATIONS';
 export const SET_FAVORITES = 'SET_FAVORITES';
+export const LOGGED_IN = 'LOGGED_IN';
+export const LOGOUT = "LOGOUT";
+export const ON_MARKER_ENTER = "ON_MARKER_ENTER";
+export const ON_MARKER_LEAVE = "ON_MARKER_LEAVE";
 
 export function logUser(email) {
 	const action = {
 		type: SIGNED_IN,
 		email
+	}
+	return action;
+}
+
+export function logOut() {
+	const action = {
+		type: LOGOUT,
+	}
+	return action;
+}
+
+export function onMapMarkerEnter(venueId) {
+	const action = {
+		type: ON_MARKER_ENTER,
+		venueId
+	}
+	return action;
+}
+
+export function onMapMarkerLeave() {
+	const action = {
+		type: ON_MARKER_LEAVE
+	}
+	return action;
+}
+
+
+export function loggedIn(yayNay) {
+	const action = {
+		type: LOGGED_IN,
+		yayNay
 	}
 	return action;
 }

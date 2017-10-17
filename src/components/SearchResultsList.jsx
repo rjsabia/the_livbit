@@ -87,7 +87,9 @@ class SearchResultsList extends Component {
 }
 
 function mapStateToProps(state) {
-	return state;
+	return {
+		myVenues: state.venue.venues
+	}
 }
 
 export default connect(mapStateToProps, { favoriteLocations, setFavorites })(SearchResultsList);

@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
-import { SIGNED_IN, SEARCH_VENUES, GET_LOCATION, FAVORITE_LOCATIONS, SET_FAVORITES } from '../actions';
+import { SIGNED_IN, SEARCH_VENUES, GET_LOCATION, FAVORITE_LOCATIONS, SET_FAVORITES, LOGGED_IN, LOGOUT, ON_MARKER_ENTER, ON_MARKER_LEAVE } from '../actions';
+import venue from './venues';
 
 let user = {
 	email: null
@@ -13,19 +14,24 @@ function userSignIn(state = user, action) {
 				email
 			}
 			return user;
+		case LOGOUT:
+			return {
+				...state,
+				email: null
+			}
 		default:
 			return state;
 	}
 }
 
-function myVenues(state = [], action) {
-	switch(action.type) {
-		case SEARCH_VENUES:
-			return action.venues;
-		default:
-			return state;
-	}
-}
+// function myVenues(state = [], action) {
+// 	switch(action.type) {
+// 		case SEARCH_VENUES:
+// 			return action.venues;
+// 		default:
+// 			return state;
+// 	}
+// }
 
 function myLocation(state = [], action) {
 	switch(action.type) {
@@ -58,6 +64,6 @@ function setFavorites (state = [], action) {
 	}
 }
 
-const rootReducer = combineReducers({ userSignIn, myVenues, myLocation, favoriteLocations, setFavorites });
+const rootReducer = combineReducers({ userSignIn, venue, myLocation, favoriteLocations, setFavorites });
 
 export default rootReducer;

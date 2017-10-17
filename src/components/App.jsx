@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { firebaseApp } from '../firebase';
 import { favoritesRef } from '../firebase';
 import { connect } from 'react-redux';
-import { setFavorites } from '../actions';
+import { setFavorites, logOut } from '../actions';
 import FavoriteItem from './FavoriteItem';
 import '../styles/index.css';
 import LogoVid from '../assets/future-circle.mp4';
@@ -24,6 +24,7 @@ class App extends Component {
 
 	signOut(){
 		firebaseApp.auth().signOut();
+		this.props.logOut();
 	}
 
 	render() {
@@ -47,7 +48,13 @@ class App extends Component {
 							
 						 	<div className="hidden-nav">
 								<ul>
-									<li><Link className="nav-link" onClick={() => this.signOut()}>SignOut</Link></li>
+									{
+										this.props.userSignedIn.email === null ?
+											<li><Link className="nav-link" to='/signin'>SignIn</Link></li>
+										:
+											<li><Link className="nav-link" onClick={() => this.signOut()}>SignOut</Link></li>
+									}
+									
 									<li><Link className="nav-link" to='/home'>Home</Link></li>
 								</ul>
 							</div>
@@ -61,20 +68,26 @@ class App extends Component {
 						<h4>Favorites</h4>
 						<div>
 							{
-								this.props.favorites
-								?
-									this.props.favorites.map((favorite, index) => {
-										const { name, lat, lon } = favorite;
-										return(
-											<div key={index}>
-												<strong>{name}</strong> Lat: <em>{lat}</em> Lon: <em>{lon}</em>
-											</div>
-										)
-									})
-								:
+								this.props.userSignedIn.email === null ?
 									<div>
-										<h4>Sorry, you have no saved goals</h4>
+										<h2>Sign up or into your account for favorites</h2>
 									</div>
+
+								:
+									this.props.favorites.length > 0 ?
+									//this.props.favorites ?
+										this.props.favorites.map((favorite, index) => {
+											const { name, lat, lon } = favorite;
+											return(
+												<div key={index}>
+													<strong>{name}</strong> Lat: <em>{lat}</em> Lon: <em>{lon}</em>
+												</div>
+											)
+										})
+									:
+										<div>
+											<h4>Sorry, you have no saved goals</h4>
+										</div>
 							}
 						</div>
 					</div>
@@ -85,15 +98,12 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-	const { setFavorites } = state;
+	const { setFavorites, userSignIn } = state;
 	console.log('state.favorites', state.setFavorites);
 	return {
-		favorites: setFavorites
+		favorites: setFavorites,
+		userSignedIn: userSignIn
 	}
 }
-// function mapStateToProps(state) {
-// 	return state;
-// }
 
-// export default connect(mapStateToProps, null)(App);
-export default connect(mapStateToProps, { setFavorites })(App);
+export default connect(mapStateToProps, { setFavorites, logOut })(App);

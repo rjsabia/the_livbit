@@ -3,6 +3,7 @@ import { compose, withProps } from "recompose";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps";
 import MarkerClusterer from "react-google-maps/lib/components/addons/MarkerClusterer";
 import { connect } from 'react-redux';
+import { onMapMarkerEnter, onMapMarkerLeave } from '../actions';
 import { API_Maps_KEY } from './secrets';
 import MapStyleDark from './MapStyleDark.json';
 
@@ -32,12 +33,19 @@ const MyMapComponent = compose(
         <Marker
           key={index}
           position={{ lat: marker.lat, lng: marker.lon }}
-          // onMouseOver={props.mouseOnMarker(marker)}
-          onMouseOver={() => console.log('marker clicked')}
+          onMouseOver={() => props.onMouseEnter(marker.id)}
+          onMouseOut={() => props.onMouseLeave()}
         > 
-            <InfoWindow>
+          {
+            props.myVenues.venueIdHovered === marker.id && props.myVenues.isInfoWindowOpen === true ?
+              <InfoWindow>
               <h1>Hello</h1>
-            </InfoWindow>
+              </InfoWindow>
+            :
+              <InfoWindow>
+              <h1>Goodbuy</h1>
+              </InfoWindow>
+          }
         </Marker>
       ))}
     </MarkerClusterer>
@@ -46,7 +54,6 @@ const MyMapComponent = compose(
 
 class MapComponent extends React.PureComponent {
   state = {
-    // markers: this.props.myVenues,
     isMarkerShown: false,
     currentLocation: {
       lat: 37.774929,
@@ -71,6 +78,14 @@ class MapComponent extends React.PureComponent {
         })
     }
     this.delayedShowMarker()
+  }
+
+  onMouseEnter = (id) => {
+    this.props.onMapMarkerEnter(id);
+  }
+
+  onMouseLeave = () => {
+    this.props.onMapMarkerLeave();
   }
 
   delayedShowMarker = () => {
@@ -98,17 +113,17 @@ class MapComponent extends React.PureComponent {
         currentLocation={this.state.currentLocation}
         myVenues={this.props.myVenues}
         mouseOnMarker={this.mouseOnMarker}
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
       />
     )
   }
 }
 
 function mapStateToProps(state) {
-  return state;
+  return {
+    myVenues: state.venue.venues
+  }
 }
 
-export default connect(mapStateToProps, null)(MapComponent);
-
-//{props.isOpen && <InfoWindow onCloseClick={props.onToggleOpen}>
-        //<FaAnchor />
-     // </InfoWindow>}
+export default connect(mapStateToProps, { onMapMarkerEnter, onMapMarkerLeave })(MapComponent);
