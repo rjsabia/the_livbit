@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { favoritesRef } from '../firebase';
-import { favoriteLocations, setFavorites } from '../actions';
+import { favoriteLocations, setFavorites, favoriteVenue } from '../actions';
 // import ResultItems from './ResultItems';
 
 class SearchResultsList extends Component {
@@ -13,12 +13,13 @@ class SearchResultsList extends Component {
 		}
 	}
 
-	favorite(name, lat, lon) {
-		let location = { name: name, lat: lat, lon: lon }
+	favorite(name, lat, lon, id) {
+		let location = { name: name, lat: lat, lon: lon, favorved: true }
 		this.props.favoriteLocations(location);
-		this.props.setFavorites(location);
+		//this.props.setFavorites(location);
 		this.setState({ favorited: true });
 		this.addFavorite(location);
+		//this.props.favoriteVenue(id);
 	}
 
 	// addFavorite(name, lat, lon) {
@@ -54,7 +55,7 @@ class SearchResultsList extends Component {
 												:
 													<div 
 														className="star"
-														onClick={() => this.favorite(venue.name, venue.lat, venue.lon)}
+														onClick={() => this.favorite(venue.name, venue.lat, venue.lon, venue.id)}
 													>
 														&#9734;
 													</div>
@@ -92,4 +93,4 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps, { favoriteLocations, setFavorites })(SearchResultsList);
+export default connect(mapStateToProps, { favoriteLocations, setFavorites, favoriteVenue })(SearchResultsList);

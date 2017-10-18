@@ -11,6 +11,24 @@ function venue(state = initialState, action) {
 				...state,
 				venues: action.venues
 			}
+		// case 'FAVORITE_VENUE':
+		// 	const updatedVenue = state.venues.filter((venue) => {
+		// 		if(venue.id === action.venueId) {
+		// 			venue.favorved = true;
+		// 			return venue;
+		// 		}
+
+		// 	})
+		// 	console.log(updatedVenue);
+		// 	const venues = state.venues.filter((venue) => {
+		// 		return venue.id !== action.venueId
+		// 	})
+		// 	const data = venues.push(updatedVenue);
+		// 	console.log('walla walla', venues);
+		// 	return {
+		// 		...state,
+		// 		venues: data
+		// 	}
 		case 'ON_MARKER_ENTER':
 			return {
 				...state,

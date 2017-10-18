@@ -24,15 +24,6 @@ function userSignIn(state = user, action) {
 	}
 }
 
-// function myVenues(state = [], action) {
-// 	switch(action.type) {
-// 		case SEARCH_VENUES:
-// 			return action.venues;
-// 		default:
-// 			return state;
-// 	}
-// }
-
 function myLocation(state = [], action) {
 	switch(action.type) {
 		case GET_LOCATION:
@@ -51,8 +42,6 @@ function favoriteLocations(state = [], action) {
 			return state;
 	}
 }
-
-// const initialState = [{ name: 'A favorite place', lat: '0', lon: '0' }]
 
 function setFavorites (state = [], action) {
 	switch(action.type) {

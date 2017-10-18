@@ -7,6 +7,8 @@ export const LOGGED_IN = 'LOGGED_IN';
 export const LOGOUT = "LOGOUT";
 export const ON_MARKER_ENTER = "ON_MARKER_ENTER";
 export const ON_MARKER_LEAVE = "ON_MARKER_LEAVE";
+export const FAVORITE_VENUE = 'FAVORITE_VENUE';
+
 
 export function logUser(email) {
 	const action = {
@@ -30,6 +32,14 @@ export function onMapMarkerEnter(venueId) {
 	}
 	return action;
 }
+
+// export function favoriteVenue(venueId) {
+// 	const action = {
+// 		type: FAVORITE_VENUE,
+// 		venueId
+// 	}
+// 	return action;
+// }
 
 export function onMapMarkerLeave() {
 	const action = {

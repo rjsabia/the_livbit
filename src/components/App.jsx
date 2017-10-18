@@ -34,9 +34,11 @@ class App extends Component {
 				<header className="hero-container">
 					<div className="logo-nav-container">
 						<div className="logo-div">
-							<div className="logo-vid-container">
-								<video className="logo-vid" autoPlay="true" loop="infinite" src={LogoVid}></video>
-							</div>
+							<Link to={'/home'} className="home-logo-anchor">
+								<div className="logo-vid-container">
+									<video className="logo-vid" autoPlay="true" loop="infinite" src={LogoVid}></video>
+								</div>
+							</Link>
 							<div className="the-logo">
 								<h2>L ivBit</h2>
 							</div>

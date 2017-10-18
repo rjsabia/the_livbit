@@ -16,8 +16,10 @@ const MyMapComponent = compose(
   }),
   withScriptjs,
   withGoogleMap
-)((props) =>
-  <GoogleMap
+)((props) => {
+  console.log('props in googleMap', props);
+  return (
+    <GoogleMap
     defaultZoom={7}
     center={{ lat: props.currentLocation.lat, lng: props.currentLocation.lng }}
     defaultOptions={{ styles: MapStyleDark }}
@@ -33,23 +35,24 @@ const MyMapComponent = compose(
         <Marker
           key={index}
           position={{ lat: marker.lat, lng: marker.lon }}
-          onMouseOver={() => props.onMouseEnter(marker.id)}
-          onMouseOut={() => props.onMouseLeave()}
+          onClick={() => props.onMouseEnter(marker.id)}
+          //onMouseOut={() => props.onMouseLeave()}
         > 
           {
-            props.myVenues.venueIdHovered === marker.id && props.myVenues.isInfoWindowOpen === true ?
+            props.venueId === marker.id && props.isInfoWindowOpen ?
               <InfoWindow>
-              <h1>Hello</h1>
+              <h2>{marker.name}</h2>
               </InfoWindow>
             :
-              <InfoWindow>
-              <h1>Goodbuy</h1>
-              </InfoWindow>
+              ''
           }
         </Marker>
       ))}
     </MarkerClusterer>
   </GoogleMap>
+  )
+}
+
 );
 
 class MapComponent extends React.PureComponent {
@@ -66,15 +69,12 @@ class MapComponent extends React.PureComponent {
 
     if (navigator && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((pos) => {
-            console.log('pos.coords', pos.coords);
-            console.log('pos.coords.latitude', pos.coords.latitude);
             this.setState({
                 currentLocation: {
                     lat: pos.coords.latitude,
                     lng: pos.coords.longitude
                 }
             })
-            console.log('current lat and lng', this.state.currentLocation);
         })
     }
     this.delayedShowMarker()
@@ -104,8 +104,6 @@ class MapComponent extends React.PureComponent {
   }
 
   render() {
-    console.log('this.state.currentLocation in render', this.state.currentLocation);
-    console.log('this.props.myVenues in render map', this.props.myVenues);
     return (
       <MyMapComponent
         isMarkerShown={this.state.isMarkerShown}
@@ -115,6 +113,8 @@ class MapComponent extends React.PureComponent {
         mouseOnMarker={this.mouseOnMarker}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
+        venueId={this.props.venueId}
+        isInfoWindowOpen={this.props.isInfoWindowOpen}
       />
     )
   }
@@ -122,7 +122,9 @@ class MapComponent extends React.PureComponent {
 
 function mapStateToProps(state) {
   return {
-    myVenues: state.venue.venues
+    myVenues: state.venue.venues,
+    venueId: state.venue.venueIdHovered,
+    isInfoWindowOpen: state.venue.isInfoWindowOpen
   }
 }
 

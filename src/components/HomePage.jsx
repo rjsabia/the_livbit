@@ -41,9 +41,11 @@ class HomePage extends Component {
 				<header className="hero-container">
 					<div className="logo-nav-container">
 						<div className="logo-div">
-							<div className="logo-vid-container">
-								<video className="logo-vid" autoPlay="true" loop="infinite" src={LogoVid}></video>
-							</div>
+							<Link to={'/home'} className="home-logo-anchor">
+								<div className="logo-vid-container">
+									<video className="logo-vid" autoPlay="true" loop="infinite" src={LogoVid}></video>
+								</div>
+							</Link>
 							<div className="the-logo">
 								<h2>L ivBit</h2>
 							</div>
@@ -63,7 +65,6 @@ class HomePage extends Component {
 												<li><Link className="nav-link" onClick={() => this.signOut()}>SignOut</Link></li>
 										}
 											{
-												//this.props.userSignIn.email ?
 												this.props.favoriteLocations.length > 0 ?
 													<li><Link className="nav-link" to='/app'>Favorites</Link></li>
 												:
