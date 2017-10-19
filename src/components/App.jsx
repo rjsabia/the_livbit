@@ -25,6 +25,10 @@ class App extends Component {
 		this.props.logOut();
 	}
 
+	clearAll() {
+		favoritesRef.set([]);
+	}
+
 	render() {
 		return (
 			<div className="App">
@@ -87,6 +91,12 @@ class App extends Component {
 											<h4>Sorry, you have no saved goals</h4>
 										</div>
 							}
+						</div>
+						<div>
+							<button
+								className="form-search-button"
+								onClick={() => this.clearAll()}
+							>Clear All Favorites</button>
 						</div>
 					</div>
 				</div>
