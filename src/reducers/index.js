@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { SIGNED_IN, SEARCH_VENUES, GET_LOCATION, FAVORITE_LOCATIONS, SET_FAVORITES, LOGGED_IN, LOGOUT, ON_MARKER_ENTER, ON_MARKER_LEAVE } from '../actions';
+import { SIGNED_IN, GET_LOCATION, FAVORITE_LOCATIONS, SET_FAVORITES, LOGOUT } from '../actions';
 import venue from './venues';
 
 let user = {

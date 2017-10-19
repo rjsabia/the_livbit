@@ -17,7 +17,6 @@ const MyMapComponent = compose(
   withScriptjs,
   withGoogleMap
 )((props) => {
-  console.log('props in googleMap', props);
   return (
     <GoogleMap
     defaultZoom={7}
@@ -36,7 +35,6 @@ const MyMapComponent = compose(
           key={index}
           position={{ lat: marker.lat, lng: marker.lon }}
           onClick={() => props.onMouseEnter(marker.id)}
-          //onMouseOut={() => props.onMouseLeave()}
         > 
           {
             props.venueId === marker.id && props.isInfoWindowOpen ?

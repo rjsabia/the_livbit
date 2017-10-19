@@ -7,28 +7,30 @@ const initialState = {
 function venue(state = initialState, action) {
 	switch(action.type) {
 		case 'SEARCH_VENUES':
+			const data = action.venues.filter(venue => {
+			venue.favorved = false;
+			return venue;
+		})
 			return {
 				...state,
-				venues: action.venues
+				venues: data
 			}
-		// case 'FAVORITE_VENUE':
-		// 	const updatedVenue = state.venues.filter((venue) => {
-		// 		if(venue.id === action.venueId) {
-		// 			venue.favorved = true;
-		// 			return venue;
-		// 		}
-
-		// 	})
-		// 	console.log(updatedVenue);
-		// 	const venues = state.venues.filter((venue) => {
-		// 		return venue.id !== action.venueId
-		// 	})
-		// 	const data = venues.push(updatedVenue);
-		// 	console.log('walla walla', venues);
-		// 	return {
-		// 		...state,
-		// 		venues: data
-		// 	}
+		case 'FAVORITE_VENUE':
+			let updatedVenue = {}
+			state.venues.filter((venue) => {
+				if(venue.id === action.venueId) {
+					venue.favorved = !venue.favorved;
+					updatedVenue = venue;
+				}
+			})
+			const venues = state.venues.filter((venue) => {
+				return venue.id !== action.venueId
+			})
+			venues.unshift(updatedVenue);
+			return {
+				...state,
+				venues
+			}
 		case 'ON_MARKER_ENTER':
 			return {
 				...state,
@@ -45,4 +47,4 @@ function venue(state = initialState, action) {
 			return state;
 	}
 }
-export default venue
+export default venue;

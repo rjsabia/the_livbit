@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { favoritesRef } from '../firebase';
 import { favoriteLocations, setFavorites, favoriteVenue } from '../actions';
-// import ResultItems from './ResultItems';
 
 class SearchResultsList extends Component {
 	constructor() {
@@ -16,17 +15,10 @@ class SearchResultsList extends Component {
 	favorite(name, lat, lon, id) {
 		let location = { name: name, lat: lat, lon: lon, favorved: true }
 		this.props.favoriteLocations(location);
-		//this.props.setFavorites(location);
 		this.setState({ favorited: true });
 		this.addFavorite(location);
-		//this.props.favoriteVenue(id);
+		this.props.favoriteVenue(id);
 	}
-
-	// addFavorite(name, lat, lon) {
-	// 	console.log('favoritesRef name', name, lat, lon)
-	// 	let favorite = { name: name, lat: lat, lon: lon };
-	// 	favoritesRef.push(favorite);
-	// }
 
 	addFavorite(favorite) {
 		favoritesRef.push(favorite);
@@ -34,23 +26,21 @@ class SearchResultsList extends Component {
 
 
 
-	render(){
-		console.log('this.props', this.props);
+	render() {
 		return (
 			<div className="result-body">
 				<h3>Search Results</h3>
 				<div className="result-container">
 					{
 						this.props.myVenues.slice(0, this.state.resultLimit).map((venue, index) => {
-							// console.log('venue.name', venue.name);
 							return (
 									<div 
 										key={index}
 										className="result-wrapper"
 										>
 										{
-											this.props.favoriteButton ?
-												this.state.favorited ? 
+											this.props.user ?
+												venue.favorved ? 
 													<div className="star">&#9733;</div>
 												:
 													<div 
@@ -89,7 +79,8 @@ class SearchResultsList extends Component {
 
 function mapStateToProps(state) {
 	return {
-		myVenues: state.venue.venues
+		myVenues: state.venue.venues,
+		user: state.userSignIn.email
 	}
 }
 

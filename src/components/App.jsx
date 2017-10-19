@@ -4,7 +4,6 @@ import { firebaseApp } from '../firebase';
 import { favoritesRef } from '../firebase';
 import { connect } from 'react-redux';
 import { setFavorites, logOut } from '../actions';
-import FavoriteItem from './FavoriteItem';
 import '../styles/index.css';
 import LogoVid from '../assets/future-circle.mp4';
 
@@ -15,7 +14,6 @@ class App extends Component {
 			let favorites = [];
 			snap.forEach(favorite => {
 				const { name, lat, lon } = favorite.val();
-				const serverKey = favorite.key;
 				favorites.push({ name, lat, lon });
 			})
 			this.props.setFavorites(favorites);
@@ -56,7 +54,6 @@ class App extends Component {
 										:
 											<li><Link className="nav-link" onClick={() => this.signOut()}>SignOut</Link></li>
 									}
-									
 									<li><Link className="nav-link" to='/home'>Home</Link></li>
 								</ul>
 							</div>
@@ -77,7 +74,6 @@ class App extends Component {
 
 								:
 									this.props.favorites.length > 0 ?
-									//this.props.favorites ?
 										this.props.favorites.map((favorite, index) => {
 											const { name, lat, lon } = favorite;
 											return(
@@ -101,7 +97,6 @@ class App extends Component {
 
 function mapStateToProps(state) {
 	const { setFavorites, userSignIn } = state;
-	console.log('state.favorites', state.setFavorites);
 	return {
 		favorites: setFavorites,
 		userSignedIn: userSignIn

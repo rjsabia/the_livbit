@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { firebaseApp } from '../firebase';
-import { favoritesRef } from '../firebase';
 import { connect } from 'react-redux';
 import { fetchVenues, logOut } from '../actions';
 import SearchResultsList from './SearchResultsList';
@@ -20,7 +19,6 @@ class HomePage extends Component {
 	}
 
 	search() {
-		// console.log('this.state', this.state);
 		this.props.fetchVenues(this.state.query);
 	}
 
@@ -106,9 +104,7 @@ class HomePage extends Component {
 							</div>
 						</div>
 						<div className="result-map-wrapper">
-							<SearchResultsList 
-								favoriteButton={true}
-							/>
+							<SearchResultsList />
 							<MapComponent />
 						</div>
 					</div>
@@ -120,7 +116,6 @@ class HomePage extends Component {
 }
 
 function mapStateToProps(state) {
-	console.log('this.state in Homepage', state.userSignIn.email);
 	return state;
 }
 
