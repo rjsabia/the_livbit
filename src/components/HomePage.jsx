@@ -105,10 +105,17 @@ class HomePage extends Component {
 						</div>
 						<div className="result-map-wrapper">
 							<SearchResultsList />
-							<MapComponent />
+							<div className="outer-map-wrapper">
+								<MapComponent />
+							</div>
 						</div>
 					</div>
 				</section>
+				<footer>
+					<div className="footer-wrapper">
+						<div><h4>Created by: Russell Sabia</h4></div>
+					</div>
+				</footer>
 
 			</div>
 		)

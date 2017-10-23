@@ -88,7 +88,7 @@ class App extends Component {
 										})
 									:
 										<div>
-											<h4>Sorry, you have no saved goals</h4>
+											<h4>Sorry, you have no saved favorites</h4>
 										</div>
 							}
 						</div>
