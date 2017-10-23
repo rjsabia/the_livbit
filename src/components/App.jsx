@@ -8,6 +8,13 @@ import '../styles/index.css';
 import LogoVid from '../assets/future-circle.mp4';
 
 class App extends Component {
+	constructor() {
+		super();
+
+		this.state = {
+			childVisible: false
+		}
+	}
 	
 	componentDidMount() {
 		favoritesRef.on('value', snap => {
@@ -29,6 +36,10 @@ class App extends Component {
 		favoritesRef.set([]);
 	}
 
+	onClick() {
+    	this.setState({childVisible: !this.state.childVisible});
+  	}
+
 	render() {
 		return (
 			<div className="App">
@@ -49,18 +60,21 @@ class App extends Component {
 							<div className="nav-div"
 								onClick={() => this.onClick()}
 							></div>
-							
-						 	<div className="hidden-nav">
-								<ul>
-									{
-										this.props.userSignedIn.email === null ?
-											<li><Link className="nav-link" to='/signin'>SignIn</Link></li>
-										:
-											<li><Link className="nav-link" onClick={() => this.signOut()}>SignOut</Link></li>
-									}
-									<li><Link className="nav-link" to='/home'>Home</Link></li>
-								</ul>
-							</div>
+							{
+								this.state.childVisible
+							 	? 	<div className="hidden-nav">
+										<ul>
+											{
+												this.props.userSignedIn.email === null ?
+													<li><Link className="nav-link" to='/signin'>SignIn</Link></li>
+												:
+													<li><Link className="nav-link" onClick={() => this.signOut()}>SignOut</Link></li>
+											}
+											<li><Link className="nav-link" to='/home'>Home</Link></li>
+										</ul>
+									</div>
+								: null
+							}
 						</nav>
 					</div>
 				</header>

@@ -34,21 +34,21 @@ class SignIn extends Component {
 				<h2>Sign In</h2>
 				<div className="form-group">
 					<input 
-						className="form-control"
+						className="form-control form-data"
 						type="text"
 						style={{marginRight: '5px'}}
 						placeholder="email"
 						onChange={event => this.setState({email: event.target.value})}
 					/>
 					<input 
-						className="form-control"
+						className="form-control form-data"
 						type="password"
 						style={{marginRight: '5px'}}
 						placeholder="password"
 						onChange={event => this.setState({password: event.target.value})}
 					/>
 					<button
-						className="btn btn-primary"
+						className="btn btn-primary form-search-button"
 						type="button"
 						onClick={() => this.signIn()}
 					>
