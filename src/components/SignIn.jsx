@@ -26,7 +26,7 @@ class SignIn extends Component {
 
 	render() {
 		return (
-			<div className="form-inline" style={{margin: '5%'}}>
+			<div className="form-inline sign-in-up" style={{margin: '5%'}}>
 				<div>
 					<Link to={'/home'}><h2>LivBit</h2></Link>
 				</div>
@@ -56,7 +56,7 @@ class SignIn extends Component {
 					</button>
 				</div>
 				<div>{this.state.error.message}</div>
-				<div><Link to={'/signup'}>Not registered? Sign up instead</Link></div>
+				<div><Link className="not-reg-or-signed" to={'/signup'}>Not registered? Sign up instead</Link></div>
 			</div>
 		)
 	}

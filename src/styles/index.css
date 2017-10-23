@@ -206,6 +206,10 @@ ul {
 	text-align: center;
 }
 
+.sign-in-up {
+	text-align: center;
+}
+
 .form-wrapper {
 	margin-bottom: 8vh;
 	padding: 10vh 5vh 5vh 5vh;
@@ -228,11 +232,17 @@ ul {
     transition: all ease 1s;
 }
 
-@media only screen and (max-width: 420px) {
+@media only screen and (max-width: 767px) {
 	.form-search-button {
 		font-size: 23px;
 		margin-top: 3vh;
 		margin-bottom: 0px;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	.not-reg-or-signed {
+		font-size: 20px;
 	}
 }
 
@@ -250,7 +260,7 @@ ul {
 	padding-right: 20px;
 }
 
-@media only screen and (max-width: 420px) {
+@media only screen and (max-width: 767px) {
 	.form-data {
 		margin-top: 3vh;
 		font-size: 18px;
