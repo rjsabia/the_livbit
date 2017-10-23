@@ -113,7 +113,7 @@ class HomePage extends Component {
 				</section>
 				<footer>
 					<div className="footer-wrapper">
-						<div><h4>Created by: Russell Sabia</h4></div>
+						<div><h4>Created with love by: Russell Sabia</h4></div>
 					</div>
 				</footer>
 
