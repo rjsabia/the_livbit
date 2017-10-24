@@ -102,14 +102,30 @@ ul {
 	position: absolute;
 	right: 4%;
 	top: 10%;
-	/*height: 5vw;
-	width: 22vh;*/
 	height: 65px;
 	width: 150px;
 	background-color: #ff3232;
 	border-radius: 4px;
 	padding-top: 7px;
 	z-index: 10000;
+}
+
+@media only screen and (max-height: 620px) {
+	.hidden-nav {
+		top: 12%;
+	}
+}
+
+@media only screen and (max-height: 515px) {
+	.hidden-nav {
+		top: 16%;
+	}
+}
+
+@media only screen and (max-height: 425px) {
+	.hidden-nav {
+		top: 23%;
+	}
 }
 
 .logo-vid-container {
@@ -200,7 +216,6 @@ ul {
 		line-height: 25px;
 	}
 }
-
 
 .main-content-container {
 	text-align: center;
