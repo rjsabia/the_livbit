@@ -67,7 +67,11 @@ function recieveVenues(json) {
 }
 
 function fetchVenuesJson(query) {
-	return fetch(`https://coinmap.org/api/v1/venues?query=${query}`)
+	return fetch(`https://cors-anywhere.herokuapp.com/https://coinmap.org/api/v1/venues?query=${query}`, {
+		headers: {
+        "x-requested-with": "xhr" 
+      }
+	})
 	.then(response => response.json())
 }
 
