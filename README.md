@@ -4,101 +4,115 @@ Livbit
 Welcome to Livbit, a quick and easy way to find out who takes
 Bitcoin. This web app allows you to search for stores or 
 services that accepts this crypto currency anywhere in the world. 
-SOme of my search results even surprised me, like did you know that
+Some of the search results even surprised me, like did you know that
 there is a Toys 'r' Rus in New York that accepts Bitcoin? 
 
 ![](./src/assets/homepage_screenshot.png?cropResize=300,200)
 ===============================================================================
 
-What is Bitcoin?
-------------------
-
-
-
-
-
-Want to try it out
-===================
-
-Link to the live site: [Photo Babble](https://shrouded-bastion-13556.herokuapp.com/)
-
-
-Functionality
-==============
-
-As of this version, Photo Babble is a very basic site that can 
-show users what an AI network sees when you give it a photo to process.
-The neural net behind the curtain that performs all of the auto-magic
-is the AWS (Amazon Web Services) Rekognition AI. Once a user uploads 
-a photo, the Node.js server sends the photo to an AWS S3 bucket, from 
-there a Lambda function is called to initiate the Rekognition scan. Once 
-the scan has completed, data labels are returned with a confidence score. 
-The user see's the data labels, which have been limited to the top ten based
-on filtering the confidence level the AI has in what it is seeing.
-
-
-What the user sees
+So what is Bitcoin?
 -------------------
 
-![](./public/images/userView.png?cropResize=200,100)
+Well if you are new to digital currencies don't feel bad, so is a majority
+of the world still. However they are gaining ground, as of November 2017 there
+is a total market cap of over 200 billion U.S. dollars invested in them. There 
+are also several hundred different types of crypto currencies. Bitcoin is the 
+original though, and to this day dominates over 50% of the entire crypto market.
+
+What does one do with Bitcoin?
+------------------------------ 
+
+Well for starters it can be used to hold monetary value, i.e. investing.
+This is where and why many people buy bitcoin. However there are more and 
+stores and services that now allow you to pay for their goods and services
+with Bitcoin. The issue is there are not many resources to search out who
+does or doesn't accept it. Enter Livbit, a simple way to search for Bitcoin
+vendors.
+
+Want to try out the live site?
+==============================
+
+Link to the live site: [Photo Babble](http://translator-adaption-40275.netlify.com)
+
+
+Functionality and Use
+======================
+
+At its core, Livbit is simply a search engine like Google (but much much smaller).
+A user enters in a search term or terms. They can be very specific like:
+
+- thai food
+- travel agent
+- pizza place
+
+Or they can be vague searches such as:
+
+- restaurant
+- store
+- food
+
+Search bar interface
+---------------------
+
+![](./src/assets/UI_screenshot.png?cropResize=300,200)
 ===============================================================================
 
+Livbit will then return the search results in two formats. The first is a standard 
+list of found locations, the second will be marked locations on a map. Since Bitcoin
+vendors are still early adoptors, you may need to zoom out on the map to find markers
+or clusters of markers to find results depending on where you live.
 
-What the server and I see
---------------------------
+Results list and mapped locations
+----------------------------------
 
-![](./public/images/serverView.png?cropResize=300,200)
+![](./src/assets/search_screenshot.png?cropResize=300,200)
 ===============================================================================
 
+If you see a location on the map that interests you, just click on it to see its name
+--------------------------------------------------------------------------------------
 
+![](./src/assets/toys_screenshot.png?cropResize=300,200)
+===============================================================================
+
+If you are interested in saving some of your searches, simply sign up for 
+a free account. This will allow you to click the star next to search results,
+and save them to your favorites. 
+
+![](./src/assets/favorites_screenshot.png?cropResize=300,200)
+===============================================================================
 
 Technical Specs
 ===============
 
-Photo Babble was built using a multitude of 
-front and backend web technologies to included:
+Livbit was only possible due to the gracious CoinMap.org API, a 
+compiled list with locations of Bitcoin vendors. It also uses the Google Maps
+API, with a custom skin, to show the user search locations. Beyond those two
+technologies Livbit also uses a plethora of web technologies to so that you
+can spend your Bitcoin, including:
 
 - HTML5
 - CSS3
 - Javascript
-- jQuery
-- Node.js
-- AWS Rekognition network
-- AWS S3 buckets
-- AWS Lambda
-- Mongoose DB
+- ES6
+- REACT
+- Redux
+- Firebase authentication 
+- Firebase DB
+- Coinmaps.org API
+- Google Maps API
 
 
 Future functionality?
 ===========================
-While it is fun now for a user to see a computer tell them what
-is in their pictures, I have plans to expand on what Photo Babble can do.
-The next evolution for this application is to solidify how a photo can be 
-categorized and then searched for using these data labels. The intention is to
-assign unique id's to each photo, which then are stored with the photos access
-url, and then its data labels within a Mongoose Database.
 
-The purpose of this will be so that this database can be searched through based
-on a users key word queries, and have the searches return any images that match 
-their search. The key to keeping this simple, fast, and cheap will be to only store 
-the direct data for the photo's and not the image itself. Sound easy? Well that part 
-is not the trick, the trick will be conect this to the photos themselves based on
-a photos access url, and then attemping to integrate this into a service like Dropbox.
-Why am I putting all of this out here, well because I would love any idea's and or 
-feedback from anyone reading this of course.
+Livbit can succesfully run searches all day everyday in its current
+form, however we can always improve right! Future plans are to imrove the 
+geolcation so that you can run search directly related to where you are. I 
+would also like to increase the features of the user accounts to include the
+ability for users to leave reviews that other signed in users can view, as well 
+as potentially allow Bitcoin vendors to promote their products or services to 
+account holders.
 
-Future Improvements?
-===========================
-
-Other changes in functionality maybe with authentication and account creation as well
-as re-working the front-end. In the time since I first built this I have been working 
-with other technologies that have opened up other avenues I did not know about before. 
-For example I may convert the entire athentication process over to Google Firebase due 
-to its ease of implementation and it simplicity to maintain. This will allow me to devote 
-more time to structuring the database for the photo data. I may also convert the front 
-end code to REACT, a framework I learned several months ago. In my opinion REACT's amazing 
-ability to pass data and scale will allow this application to grow with increasing 
-complexity smoothly.
 
 Want to get in touch, share your thoughts, or collaborate?
 -----------------------------------------------------------
