@@ -32,7 +32,7 @@ vendors.
 Want to try out the live site?
 ==============================
 
-Link to the live site: [Photo Babble](http://translator-adaption-40275.netlify.com)
+Link to the live site: [Livbit](http://translator-adaption-40275.netlify.com)
 
 
 Functionality and Use
@@ -86,8 +86,8 @@ Technical Specs
 
 Livbit was only possible due to the gracious CoinMap.org API, a 
 compiled list with locations of Bitcoin vendors. It also uses the Google Maps
-API, with a custom skin, to show the user search locations. Beyond those two
-technologies Livbit also uses a plethora of web technologies to so that you
+API (with a custom skin) to show the users search locations. Beyond those two
+API's, Livbit also uses a plethora of web technologies so that you
 can spend your Bitcoin, including:
 
 - HTML5
@@ -106,12 +106,13 @@ Future functionality?
 ===========================
 
 Livbit can succesfully run searches all day everyday in its current
-form, however we can always improve right! Future plans are to imrove the 
-geolcation so that you can run search directly related to where you are. I 
+form, however we can always improve right! Future plans are to improve the 
+geolcation so that you can run searches directly related to where you are. I 
 would also like to increase the features of the user accounts to include the
 ability for users to leave reviews that other signed in users can view, as well 
 as potentially allow Bitcoin vendors to promote their products or services to 
-account holders.
+account holders. I also have some work to do on the original favorites section,
+and would like to add more functionality to that as well.
 
 
 Want to get in touch, share your thoughts, or collaborate?
