@@ -5,7 +5,7 @@ Welcome to Livbit, a quick and easy way to find out who takes
 Bitcoin. This web app allows you to search for stores or 
 services that accepts this crypto currency anywhere in the world. 
 Some of the search results even surprised me, like did you know that
-there is a Toys 'r' Rus in New York that accepts Bitcoin? 
+there is a Toys 'R' Us in New York that accepts Bitcoin? 
 
 ![](./src/assets/homepage_screenshot.png?cropResize=300,200)
 ===============================================================================
@@ -23,7 +23,7 @@ What does one do with Bitcoin?
 ------------------------------ 
 
 Well for starters it can be used to hold monetary value, i.e. investing.
-This is where and why many people buy bitcoin. However there are more and 
+This is why many people buy bitcoin. However there are more and more 
 stores and services that now allow you to pay for their goods and services
 with Bitcoin. The issue is there are not many resources to search out who
 does or doesn't accept it. Enter Livbit, a simple way to search for Bitcoin
@@ -60,7 +60,7 @@ Search bar interface
 Livbit will then return the search results in two formats. The first is a standard 
 list of found locations, the second will be marked locations on a map. Since Bitcoin
 vendors are still early adoptors, you may need to zoom out on the map to find markers
-or clusters of markers to find results depending on where you live.
+or clusters of markers to see results depending on where you live.
 
 Results list and mapped locations
 ----------------------------------
@@ -85,9 +85,9 @@ Technical Specs
 ===============
 
 Livbit was only possible due to the gracious CoinMap.org API, a 
-compiled list with locations of Bitcoin vendors. It also uses the Google Maps
+compiled list of locations of Bitcoin vendors. It also uses the Google Maps
 API (with a custom skin) to show the users search locations. Beyond those two
-API's, Livbit also uses a plethora of web technologies so that you
+API's, Livbit uses a plethora of web technologies so that you
 can spend your Bitcoin, including:
 
 - HTML5
